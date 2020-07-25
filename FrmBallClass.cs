@@ -32,13 +32,7 @@ namespace BallClass
 
             this.Text = $"Ball Class Graphics By Miguel with {balls.Length} balls";
 
-            ballMaster = new BouncingBall(this,
-                                          ClientRectangle.Width / 2,
-                                          ClientRectangle.Height / 2,
-                                          5,
-                                          5,
-                                          200,
-                                          Brushes.Black);
+
 
             for (int i = 0; i < balls.Length; i++)
             {
@@ -55,7 +49,13 @@ namespace BallClass
             }
 
 
-
+            ballMaster = new BouncingBall(this,
+                                          ClientRectangle.Width / 2,
+                                          ClientRectangle.Height / 2,
+                                          5,
+                                          5,
+                                          200,
+                                          Brushes.Black);
 
 
             draw = new Timer();
@@ -67,22 +67,21 @@ namespace BallClass
 
         private void Draw_Tick(object sender, EventArgs e)
         {
-            ballMaster.Update();
             for (int i = 0; i < balls.Length; i++)
             {
                 balls[i].Update();
             }
+            ballMaster.Update();
             this.Refresh();
         }
 
         private void FrmBallClass_Paint(object sender, PaintEventArgs e)
         {
-            ballMaster.Display(e.Graphics);
             for (int i = 0; i < balls.Length; i++)
             {
                 balls[i].Display(e.Graphics);
             }
-
+            ballMaster.Display(e.Graphics);
         }
     }
 }
