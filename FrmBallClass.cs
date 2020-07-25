@@ -17,7 +17,7 @@ namespace BallClass
         // global variables
         Timer draw;
         BouncingBall ballMaster;
-        BouncingBall ballMaster2;
+        BouncingBall[] balls = new BouncingBall[50];
 
         public FrmBallClass()
         {
@@ -33,6 +33,16 @@ namespace BallClass
             ballMaster = new BouncingBall(this,
                                           ClientRectangle.Width / 2,
                                           ClientRectangle.Height / 2,
+                                          5,
+                                          5,
+                                          200,
+                                          Brushes.Black);
+
+            for (int i = 0; i < balls.Length; i++)
+            {
+                balls[i] = new BouncingBall(this,
+                                          ClientRectangle.Width / 2,
+                                          ClientRectangle.Height / 2,
                                           rnd.Next(1, 10),
                                           rnd.Next(1, 10),
                                           rnd.Next(50, 200),
@@ -40,17 +50,9 @@ namespace BallClass
                                               Color.FromArgb(rnd.Next(0, 256),
                                               rnd.Next(0, 256),
                                               rnd.Next(0, 256))));
+            }
 
-            ballMaster2 = new BouncingBall(this,
-                              ClientRectangle.Width / 2,
-                              ClientRectangle.Height / 2,
-                              rnd.Next(1, 10),
-                              rnd.Next(1, 10),
-                              rnd.Next(50, 200),
-                              new SolidBrush(
-                                  Color.FromArgb(rnd.Next(0, 256),
-                                  rnd.Next(0, 256),
-                                  rnd.Next(0, 256))));
+
 
             draw = new Timer();
 
@@ -62,14 +64,21 @@ namespace BallClass
         private void Draw_Tick(object sender, EventArgs e)
         {
             ballMaster.Update();
-            ballMaster2.Update();
+            for (int i = 0; i < balls.Length; i++)
+            {
+                balls[i].Update();
+            }
             this.Refresh();
         }
 
         private void FrmBallClass_Paint(object sender, PaintEventArgs e)
         {
             ballMaster.Display(e.Graphics);
-            ballMaster2.Display(e.Graphics);
+            for (int i = 0; i < balls.Length; i++)
+            {
+                balls[i].Display(e.Graphics);
+            }
+
         }
     }
 }
