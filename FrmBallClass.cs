@@ -17,7 +17,7 @@ namespace BallClass
         // global variables
         Timer draw;
         BouncingBall ballMaster;
-        BouncingBall[] balls = new BouncingBall[50];
+        BouncingBall[] balls = new BouncingBall[300];
 
         public FrmBallClass()
         {
@@ -29,6 +29,8 @@ namespace BallClass
             this.DoubleBuffered = true;
             this.Paint += FrmBallClass_Paint;
             Random rnd = new Random();
+
+            this.Text = $"Ball Class Graphics By Miguel with {balls.Length} balls";
 
             ballMaster = new BouncingBall(this,
                                           ClientRectangle.Width / 2,
@@ -47,10 +49,12 @@ namespace BallClass
                                           rnd.Next(1, 10),
                                           rnd.Next(50, 200),
                                           new SolidBrush(
-                                              Color.FromArgb(rnd.Next(0, 256),
-                                              rnd.Next(0, 256),
-                                              rnd.Next(0, 256))));
+                                              Color.FromArgb(rnd.Next(80, 200),
+                                              rnd.Next(80, 200),
+                                              rnd.Next(80, 200))));
             }
+
+
 
 
 
