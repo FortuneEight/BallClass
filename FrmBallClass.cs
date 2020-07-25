@@ -19,7 +19,6 @@ namespace BallClass
         BouncingBall ballMaster;
         BouncingBall ballMaster2;
 
-
         public FrmBallClass()
         {
             InitializeComponent();
